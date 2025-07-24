@@ -81,9 +81,7 @@ async def fetch_features(source: str, max_connections: int=10, batch_size: int=2
                           colour='green',
                           dynamic_ncols=True):
             responses.extend(await asyncio.gather(*tasks[index:index+max_connections], return_exceptions=True))
-        
-        _print(f"Building {BASE_PARAMS['f']}")
-        
+                    
         failures = [
             resp for resp in responses 
             if isinstance(resp, Exception) or isinstance(resp, Response) and resp.is_error
